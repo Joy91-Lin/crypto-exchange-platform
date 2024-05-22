@@ -1,6 +1,7 @@
 package com.joycodes.dataserver.controller;
 
 import com.joycodes.dataserver.model.Coin;
+import com.joycodes.dataserver.model.PriceTrend;
 import com.joycodes.dataserver.service.CoinService;
 import com.joycodes.dataserver.service.PriceTrendService;
 import com.squareup.okhttp.OkHttpClient;
@@ -32,7 +33,7 @@ public class CoinsController {
     private PriceTrendService priceTrendService;
 
     @GetMapping("/markets/{rankRange}")
-    public ResponseEntity<List<Coin>> getTopCoins(@PathVariable Integer rankRange) throws IOException {
+    public ResponseEntity<List<PriceTrend>> getTopCoins(@PathVariable Integer rankRange) throws IOException {
         if(rankRange < 1 || rankRange > 10){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
@@ -49,8 +50,9 @@ public class CoinsController {
         Response response = client.newCall(request).execute();
         String jsonString = response.body().string();
         List<Coin> coins = coinService.saveCoins(jsonString);
+        List<PriceTrend> prices = priceTrendService.saveCoinsPrice(jsonString);
 
-        return ResponseEntity.status(HttpStatus.OK).body(coins);
+        return ResponseEntity.status(HttpStatus.OK).body(prices);
     }
 
 }

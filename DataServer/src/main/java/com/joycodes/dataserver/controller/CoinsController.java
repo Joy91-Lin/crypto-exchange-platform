@@ -36,17 +36,8 @@ public class CoinsController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
 
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(env.getProperty("gecko.coin.markets.usd.url")+rankRange.intValue())
-                .get()
-                .addHeader("accept", "application/json")
-                .addHeader("x-cg-demo-api-key", env.getProperty("gecko.api-key"))
-                .build();
-
-        Response response = client.newCall(request).execute();
-        String jsonString = response.body().string();
+        String jsonString = coinService.callGeckoApi(env.getProperty("gecko.coin.markets.usd.url")+rankRange.intValue(),
+                env.getProperty("gecko.api-key"));
         coinService.saveCoins(jsonString);
         priceTrendService.saveCoinsPrice(jsonString);
 
@@ -57,39 +48,22 @@ public class CoinsController {
 
     @GetMapping("/trending")
     public ResponseEntity<List<CoinSimpleInfo>> getTrendingCoins() throws IOException {
-        OkHttpClient client = new OkHttpClient();
+        String jsonString = coinService.callGeckoApi(env.getProperty("gecko.coin.trending.url"),
+                env.getProperty("gecko.api-key"));
 
-        Request request = new Request.Builder()
-                .url(env.getProperty("gecko.coin.trending.url"))
-                .get()
-                .addHeader("accept", "application/json")
-                .addHeader("x-cg-demo-api-key", env.getProperty("gecko.api-key"))
-                .build();
-
-        Response response = client.newCall(request).execute();
-
-        List<CoinSimpleInfo> coins = coinService.getTrendingCoins(response.body().string());
+        List<CoinSimpleInfo> coins = coinService.getTrendingCoins(jsonString);
         return ResponseEntity.status(HttpStatus.OK).body(coins);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<CoinSimpleInfo> getCoin(@PathVariable String id) throws IOException {
-        OkHttpClient client = new OkHttpClient();
-
-        Request request = new Request.Builder()
-                .url(env.getProperty("gecko.coin.info.url")+id)
-                .get()
-                .addHeader("accept", "application/json")
-                .addHeader("x-cg-demo-api-key", env.getProperty("gecko.api-key"))
-                .build();
-
-        Response response = client.newCall(request).execute();
-        String jsonBody = response.body().string();
-        JSONObject json = new JSONObject(jsonBody);
+        String jsonString = coinService.callGeckoApi(env.getProperty("gecko.coin.info.url")+id,
+                env.getProperty("gecko.api-key"));
+        JSONObject json = new JSONObject(jsonString);
         if(json.has("error")){
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
         }
-        CoinSimpleInfo coin = coinService.getCoin(jsonBody);
+        CoinSimpleInfo coin = coinService.getCoin(jsonString);
 
         return ResponseEntity.status(HttpStatus.OK).body(coin);
     }

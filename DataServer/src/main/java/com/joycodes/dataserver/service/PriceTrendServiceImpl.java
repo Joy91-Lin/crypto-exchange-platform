@@ -9,6 +9,7 @@ import com.joycodes.dataserver.repository.PriceTrendRepository;
 import com.squareup.okhttp.ResponseBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class PriceTrendServiceImpl implements PriceTrendService {
     @Autowired
     private PriceTrendRepository priceTrendRepository;
 
+    @Transactional
     @Override
     public List<PriceTrend> saveCoinsPrice(String jsonBody) {
         List<PriceTrend> prices;

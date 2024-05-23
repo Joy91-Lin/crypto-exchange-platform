@@ -6,20 +6,44 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.joycodes.dataserver.model.Coin;
 import com.joycodes.dataserver.model.CoinSimpleInfo;
 import com.joycodes.dataserver.repository.CoinRepository;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
+import com.squareup.okhttp.Response;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.json.JSONObject;
 import org.json.JSONArray;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class CoinServiceImpl implements CoinService {
 
+
     @Autowired
     private CoinRepository coinRepository;
 
+    @Override
+    public String callGeckoApi(String url, String apiKey) throws IOException {
+        OkHttpClient client = new OkHttpClient();
+
+        Request request = new Request.Builder()
+                .url(url)
+                .get()
+                .addHeader("accept", "application/json")
+                .addHeader("x-cg-demo-api-key", apiKey)
+                .build();
+
+        Response response = client.newCall(request).execute();
+        return response.body().string();
+    }
+
+    @Transactional
     @Override
     public List<Coin> saveCoins(String jsonBody) {
         List<Coin> coins;

@@ -53,7 +53,7 @@ example
 ```
 
 
-### How to start
+# How to start
 
 1. After clone and cd to DataServer
 2. Modify src/resources/application.properties and src/resources/coingecko.properties<br>Make sure to setup mysql database and coingecko api key.<br>You can get coingecko api key [here](<https://www.coingecko.com/zh-tw/api/pricing>)

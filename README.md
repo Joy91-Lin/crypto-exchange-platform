@@ -24,7 +24,7 @@ coins
 |--------|-----------------------------|---------------------------|-----------------|
 | GET    | coins/markets/\{rankRange\} | rankRange\[int\]\-require<br>rankRange=1~10 | 取得市場排名的Coin 資訊  |
 | GET    | coins/trending              | 無                         | 取得熱度前15的Coin 資訊 |
-| GET    | coins/\{id\}                | id\[String\]\-require<br>refers to [coingecko id list](<https://docs.google.com/spreadsheets/d/1wTTuxXt8n9q7C4NDXqQpI3wpKu1_5bGVmP9Xz0XGSyU/edit#gid=0>)    | 取得Coin 資訊       |
+| GET    | coins/\{id\}                | id\[String\]\-require<br>*refers to [coingecko id list](<https://docs.google.com/spreadsheets/d/1wTTuxXt8n9q7C4NDXqQpI3wpKu1_5bGVmP9Xz0XGSyU/edit#gid=0>)    | 取得Coin 資訊       |
 
 
 ### response 
@@ -58,4 +58,8 @@ example
 1. After clone and cd to DataServer
 2. Modify src/resources/application.properties and src/resources/coingecko.properties<br>Make sure to setup mysql database and coingecko api key.<br>You can get coingecko api key [here](<https://www.coingecko.com/zh-tw/api/pricing>)
 3. Interact with APIs
+
+### Information
+1. [CoinGecko website](<https://www.coingecko.com/>)
+2. [CoinGecko api doc](<https://docs.coingecko.com/v3.0.1/reference/introduction>)
 

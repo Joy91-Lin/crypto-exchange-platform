@@ -10,10 +10,10 @@ ping
 | Get    | ping/test-connection | 測試是否能夠與 CoinGecko API 交互 |
 
 ### response 
-    200 text/plain
-    ```
-    {"gecko_says":"(V3) To the Moon!"}
-    ```
+200 text/plain
+```
+{"gecko_says":"(V3) To the Moon!"}
+```
 
 
 
@@ -28,15 +28,15 @@ coins
 
 
 ### response 
-    200 application/json
+200 application/json
 
-    * market_cap_rank[int]
-    * symbol[string]
-    * name[string]
-    * image[string]
-    * current_price[float]
-    * market_cap[float]
-    * price_change_percentage_24h[float]
+* market_cap_rank[int]
+* symbol[string]
+* name[string]
+* image[string]
+* current_price[float]
+* market_cap[float]
+* price_change_percentage_24h[float]
 
 
 example

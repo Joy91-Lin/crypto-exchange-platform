@@ -55,7 +55,7 @@ public class CoinServiceImpl implements CoinService {
             JSONObject item = it.getJSONObject("item");
 
             CoinSimpleInfo coin = new CoinSimpleInfo();
-            coin.setMarket_cap_rank(item.getFloat("market_cap_rank"));
+            coin.setMarket_cap_rank(item.getInt("market_cap_rank"));
             coin.setSymbol(item.getString("symbol"));
             coin.setName(item.getString("name"));
             coin.setImage(item.getString("small"));
@@ -72,5 +72,22 @@ public class CoinServiceImpl implements CoinService {
         });
 
         return trendingCoins;
+    }
+
+    @Override
+    public CoinSimpleInfo getCoin(String jsonBody) {
+        CoinSimpleInfo coin = new CoinSimpleInfo();
+
+        JSONObject json = new JSONObject(jsonBody);
+        coin.setMarket_cap_rank(json.getInt(  "market_cap_rank"));
+        coin.setSymbol(json.getString("symbol"));
+        coin.setName(json.getString("name"));
+        coin.setImage(json.getJSONObject("image").getString("small"));
+        JSONObject marketData = json.getJSONObject("market_data");
+        coin.setCurrent_price(marketData.getJSONObject("current_price").getFloat("usd"));
+        coin.setMarket_cap(marketData.getJSONObject("market_cap").getFloat("usd"));
+        coin.setPrice_change_percentage_24h(marketData.getFloat("price_change_percentage_24h"));
+
+        return coin;
     }
 }

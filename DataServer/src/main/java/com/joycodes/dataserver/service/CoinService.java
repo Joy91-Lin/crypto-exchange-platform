@@ -12,4 +12,6 @@ public interface CoinService {
 
     public List<CoinSimpleInfo> getTrendingCoins(String jsonBody);
 
+    public CoinSimpleInfo getCoin(String jsonBody);
+
 }

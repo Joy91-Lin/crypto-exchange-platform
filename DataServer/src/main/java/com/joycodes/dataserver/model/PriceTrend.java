@@ -19,7 +19,7 @@ public class PriceTrend {
     private String id;
     private Float current_price;
     private Float market_cap;
-    private Float market_cap_rank;
+    private Integer market_cap_rank;
     private Float high_24h;
     private Float low_24h;
     private Float price_change_percentage_24h;
@@ -57,11 +57,11 @@ public class PriceTrend {
         this.market_cap = market_cap;
     }
 
-    public Float getMarket_cap_rank() {
+    public Integer getMarket_cap_rank() {
         return market_cap_rank;
     }
 
-    public void setMarket_cap_rank(Float market_cap_rank) {
+    public void setMarket_cap_rank(Integer market_cap_rank) {
         this.market_cap_rank = market_cap_rank;
     }
 

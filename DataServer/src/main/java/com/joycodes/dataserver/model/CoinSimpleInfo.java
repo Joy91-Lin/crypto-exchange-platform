@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CoinSimpleInfo {
-    private Float market_cap_rank;
+    private Integer market_cap_rank;
     private String symbol;
     private String name;
     private String image;
@@ -52,11 +52,11 @@ public class CoinSimpleInfo {
         this.market_cap = market_cap;
     }
 
-    public Float getMarket_cap_rank() {
+    public Integer getMarket_cap_rank() {
         return market_cap_rank;
     }
 
-    public void setMarket_cap_rank(Float market_cap_rank) {
+    public void setMarket_cap_rank(Integer market_cap_rank) {
         this.market_cap_rank = market_cap_rank;
     }
 

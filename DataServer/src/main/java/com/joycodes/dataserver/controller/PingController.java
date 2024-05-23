@@ -16,7 +16,6 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/ping")
 @PropertySource("classpath:coingecko.properties")
-@CrossOrigin
 public class PingController {
 
     @Autowired

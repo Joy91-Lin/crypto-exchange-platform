@@ -59,11 +59,11 @@ example
 
 # How to start
 
-1. After clone and cd to DataServer
-2. Modify src/resources/application.properties and src/resources/coingecko.properties<br>Make sure to setup mysql database and coingecko api key.<br>You can get coingecko api key [here](<https://www.coingecko.com/zh-tw/api/pricing>)
-3. Interact with APIs
+1. git clone程式並切換到 DataServer 目錄
+2. 修改 src/resources/application.properties 和 src/resources/coingecko.properties<br>確保完成設置 MySQL 數據庫連線設定和 CoinGecko API 密鑰<br>[獲取 CoinGecko API 密鑰](<https://www.coingecko.com/zh-tw/api/pricing>)
+3. 與 API 進行交互
 
-### Information
+# Information
 1. [CoinGecko website](<https://www.coingecko.com/>)
 2. [CoinGecko api doc](<https://docs.coingecko.com/v3.0.1/reference/introduction>)
 

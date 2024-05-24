@@ -52,6 +52,7 @@ example
 }
 ```
 # Test
+執行所有tests: `mvn test`
 * CoinsControllerTest
 * PingControllerTest
 * CoinServiceImplTest

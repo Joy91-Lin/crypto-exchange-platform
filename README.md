@@ -51,7 +51,11 @@ example
     "price_change_percentage_24h": 0.00315
 }
 ```
-
+# Test
+* CoinsControllerTest
+* PingControllerTest
+* CoinServiceImplTest
+* PriceTrendServiceImplTest
 
 # How to start
 
